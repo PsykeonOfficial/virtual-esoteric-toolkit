@@ -81,9 +81,96 @@ def tarot():
         ])
     ]
     
+    tarot_data = [
+        ("The Fool", "Beginnings, innocence", "Recklessness, naivety"),
+        ("The Magician", "Manifestation, skill", "Manipulation, untapped potential"),
+        ("The High Priestess", "Intuition, mystery", "Secrets, disconnection"),
+        ("The Empress", "Fertility, nurturing", "Dependence, smothering"),
+        ("The Emperor", "Authority, structure", "Tyranny, rigidity"),
+        ("The Hierophant", "Tradition, guidance", "Rebellion, nonconformity"),
+        ("The Lovers", "Love, harmony", "Disharmony, imbalance"),
+        ("The Chariot", "Willpower, victory", "Lack of control, obstacles"),
+        ("Strength", "Courage, compassion", "Weakness, insecurity"),
+        ("The Hermit", "Introspection, solitude", "Isolation, loneliness"),
+        ("Wheel of Fortune", "Change, cycles", "Bad luck, resistance"),
+        ("Justice", "Fairness, truth", "Unfairness, dishonesty"),
+        ("The Hanged Man", "Sacrifice, surrender", "Stalling, indecision"),
+        ("Death", "Transformation, endings", "Resistance, stagnation"),
+        ("Temperance", "Balance, patience", "Imbalance, excess"),
+        ("The Devil", "Bondage, materialism", "Detachment, freedom"),
+        ("The Tower", "Upheaval, chaos", "Avoiding disaster, fear"),
+        ("The Star", "Hope, renewal", "Despair, disconnection"),
+        ("The Moon", "Illusion, anxiety", "Clarity, fear release"),
+        ("The Sun", "Joy, success", "Depression, lack of success"),
+        ("Judgement", "Rebirth, awakening", "Self-doubt, refusal"),
+        ("The World", "Completion, harmony", "Incompletion, delay"),
+        ("Ace of Cups", "Love, compassion", "Blocked emotions, emptiness"),
+        ("Two of Cups", "Partnership, unity", "Break-up, disharmony"),
+        ("Three of Cups", "Celebration, friendship", "Overindulgence, isolation"),
+        ("Four of Cups", "Contemplation, apathy", "Withdrawal, missed opportunity"),
+        ("Five of Cups", "Loss, regret", "Recovery, moving on"),
+        ("Six of Cups", "Nostalgia, reunion", "Stuck in past, naivety"),
+        ("Seven of Cups", "Choices, dreams", "Overwhelm, indecision"),
+        ("Eight of Cups", "Abandonment, change", "Indecision, drifting"),
+        ("Nine of Cups", "Satisfaction, gratitude", "Dissatisfaction, materialism"),
+        ("Ten of Cups", "Harmony, family", "Disconnection, conflict"),
+        ("Page of Cups", "Creativity, intuition", "Creative blocks, immaturity"),
+        ("Knight of Cups", "Romance, idealism", "Unrealistic, jealousy"),
+        ("Queen of Cups", "Empathy, nurturing", "Insecurity, codependency"),
+        ("King of Cups", "Emotional balance, diplomacy", "Manipulation, moodiness"),
+        ("Ace of Pentacles", "Prosperity, opportunity", "Lost opportunity, poor planning"),
+        ("Two of Pentacles", "Balance, adaptability", "Disorganization, overwhelm"),
+        ("Three of Pentacles", "Teamwork, skill", "Disharmony, isolation"),
+        ("Four of Pentacles", "Security, control", "Greed, overspending"),
+        ("Five of Pentacles", "Poverty, insecurity", "Recovery, hope"),
+        ("Six of Pentacles", "Generosity, sharing", "Selfishness, debt"),
+        ("Seven of Pentacles", "Patience, investment", "Limited reward, impatience"),
+        ("Eight of Pentacles", "Skill, diligence", "Perfectionism, stagnation"),
+        ("Nine of Pentacles", "Abundance, independence", "Overwork, lack of self-worth"),
+        ("Ten of Pentacles", "Wealth, legacy", "Financial loss, instability"),
+        ("Page of Pentacles", "Opportunity, learning", "Procrastination, failure"),
+        ("Knight of Pentacles", "Hard work, routine", "Boredom, perfectionism"),
+        ("Queen of Pentacles", "Nurturing, practicality", "Work-life imbalance"),
+        ("King of Pentacles", "Wealth, leadership", "Greed, obsession"),
+        ("Ace of Swords", "Clarity, breakthrough", "Confusion, chaos"),
+        ("Two of Swords", "Indecision, stalemate", "Confusion, overload"),
+        ("Three of Swords", "Heartbreak, sorrow", "Healing, optimism"),
+        ("Four of Swords", "Rest, meditation", "Burnout, exhaustion"),
+        ("Five of Swords", "Conflict, tension", "Reconciliation, amends"),
+        ("Six of Swords", "Transition, healing", "Resistance, unfinished business"),
+        ("Seven of Swords", "Deception, strategy", "Self-deceit, exposure"),
+        ("Eight of Swords", "Restriction, fear", "Freedom, self-awareness"),
+        ("Nine of Swords", "Anxiety, despair", "Fear, secrets"),
+        ("Ten of Swords", "Betrayal, ending", "Recovery, resilience"),
+        ("Page of Swords", "Curiosity, ideas", "Haste, all talk"),
+        ("Knight of Swords", "Ambition, action", "Impulsiveness, recklessness"),
+        ("Queen of Swords", "Clarity, independence", "Coldness, manipulation"),
+        ("King of Swords", "Intellect, authority", "Tyranny, abuse"),
+        ("Ace of Wands", "Inspiration, growth", "Lack of direction, delays"),
+        ("Two of Wands", "Planning, progress", "Fear of change, indecision"),
+        ("Three of Wands", "Expansion, foresight", "Delays, lack of vision"),
+        ("Four of Wands", "Celebration, harmony", "Conflict, tension"),
+        ("Five of Wands", "Competition, conflict", "Avoiding conflict, tension"),
+        ("Six of Wands", "Victory, recognition", "Ego, fall from grace"),
+        ("Seven of Wands", "Defense, perseverance", "Exhaustion, giving up"),
+        ("Eight of Wands", "Speed, action", "Delays, frustration"),
+        ("Nine of Wands", "Resilience, courage", "Fatigue, overwhelm"),
+        ("Ten of Wands", "Burden, duty", "Overload, delegation"),
+        ("Page of Wands", "Inspiration, exploration", "Indecision, redirection"),
+        ("Knight of Wands", "Passion, energy", "Haste, scattered"),
+        ("Queen of Wands", "Confidence, courage", "Insecurity, introversion"),
+        ("King of Wands", "Leadership, vision", "Impulsiveness, ruthlessness")
+    ]
+    
+    tarot_meanings = {card: {"upright": up, "reversed": rev} for card, up, rev in tarot_data}
+    
     def draw_card(available_cards, use_reversals):
-        card = random.choice(available_cards)
-        return card + (" (Reversed)" if use_reversals and random.choice([True, False]) else "")
+        card_base = random.choice(available_cards)
+        is_reversed = use_reversals and random.choice([True, False])
+        card_display = card_base + " (Reversed)" if is_reversed else card_base
+        name = card_base.split(" - ")[1]
+        meaning = tarot_meanings[name]["reversed"] if is_reversed else tarot_meanings[name]["upright"]
+        return card_display, meaning
     
     colored_print("\nVirtual Tarot Deck")
     use_reversals = colored_input("\nUse reversals? (Y/N): ").strip().upper() == "Y"
@@ -104,11 +191,12 @@ def tarot():
             message = "No More Cards to Draw"
             colored_print(f"+{'-' * (len(message) + 2)}+\n| {message} |\n+{'-' * (len(message) + 2)}+")
             continue
-        card = draw_card(available_cards, use_reversals)
+        card_display, meaning = draw_card(available_cards, use_reversals)
         if not unlimited_draws:
-            available_cards.remove(card.split(" (")[0])
-        colored_print(f"+{'-' * (len(card) + 2)}+\n| {card} |\n+{'-' * (len(card) + 2)}+")
-
+            base_card = card_display.split(" (")[0]
+            available_cards.remove(base_card)
+        colored_print(f"+{'-' * (len(card_display) + 2)}+\n| {card_display} |\n+{'-' * (len(card_display) + 2)}+")
+        colored_print(f"Meaning: {meaning}")
 # Rune Set
 def runes():
     clear_terminal()
@@ -122,9 +210,42 @@ def runes():
         ]
     ]
     
+    runes_data = [
+        ("Fehu", "Wealth, success", "Loss, greed"),
+        ("Uruz", "Strength, health", "Weakness, obsession"),
+        ("Thurisaz", "Protection, warning", "Danger, compulsion"),
+        ("Ansuz", "Wisdom, communication", "Misunderstanding, delusion"),
+        ("Raidho", "Journey, change", "Crisis, rigidity"),
+        ("Kenaz", "Creativity, vision", "Instability, loss"),
+        ("Gebo", "Generosity, balance", "Greed, dependence"),
+        ("Wunjo", "Joy, harmony", "Sorrow, alienation"),
+        ("Hagalaz", "Challenge, growth", "Disaster, stagnation"),
+        ("Nauthiz", "Need, constraint", "Hardship, deprivation"),
+        ("Isa", "Stillness, focus", "Ego, stagnation"),
+        ("Jera", "Harvest, reward", "Setback, reversal"),
+        ("Eihwaz", "Strength, reliability", "Confusion, dissatisfaction"),
+        ("Perthro", "Mystery, chance", "Addiction, loneliness"),
+        ("Algiz", "Protection, support", "Vulnerability, danger"),
+        ("Sowilo", "Success, vitality", "False goals, gullibility"),
+        ("Tiwaz", "Honor, leadership", "Imbalance, strife"),
+        ("Berkano", "Growth, fertility", "Anxiety, stagnation"),
+        ("Ehwaz", "Progress, movement", "Restlessness, mistrust"),
+        ("Mannaz", "Self, community", "Depression, isolation"),
+        ("Laguz", "Intuition, flow", "Fear, avoidance"),
+        ("Ingwaz", "Fertility, virtue", "Impotence, stagnation"),
+        ("Dagaz", "Awakening, clarity", "Blindness, hopelessness"),
+        ("Othala", "Legacy, prosperity", "Disorder, loss")
+    ]
+    
+    runes_meanings = {rune: {"upright": up, "reversed": rev} for rune, up, rev in runes_data}
+    
     def draw_rune(available_runes, use_reversals):
-        rune = random.choice(available_runes)
-        return rune + (" (Reversed)" if use_reversals and random.choice([True, False]) else "")
+        rune_base = random.choice(available_runes)
+        is_reversed = use_reversals and random.choice([True, False])
+        rune_display = rune_base + " (Reversed)" if is_reversed else rune_base
+        name = rune_base.split(" - ")[1]
+        meaning = runes_meanings[name]["reversed"] if is_reversed else runes_meanings[name]["upright"]
+        return rune_display, meaning
     
     colored_print("\nVirtual Runes Set")
     use_reversals = colored_input("\nUse reversals? (Y/N): ").strip().upper() == "Y"
@@ -145,10 +266,12 @@ def runes():
             message = "No More Runes to Draw"
             colored_print(f"+{'-' * (len(message) + 2)}+\n| {message} |\n+{'-' * (len(message) + 2)}+")
             continue
-        rune = draw_rune(available_runes, use_reversals)
+        rune_display, meaning = draw_rune(available_runes, use_reversals)
         if not unlimited_runes:
-            available_runes.remove(rune.split(" (")[0])
-        colored_print(f"+{'-' * (len(rune) + 2)}+\n| {rune} |\n+{'-' * (len(rune) + 2)}+")
+            base_rune = rune_display.split(" (")[0]
+            available_runes.remove(base_rune)
+        colored_print(f"+{'-' * (len(rune_display) + 2)}+\n| {rune_display} |\n+{'-' * (len(rune_display) + 2)}+")
+        colored_print(f"Meaning: {meaning}")
 
 # Coin Toss
 def coin():
